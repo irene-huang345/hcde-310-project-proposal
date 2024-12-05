@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Getting Cozy!</title>
 </head>
 <body>
-$END$
+    <h1>Getting Cozy!</h1>
+
+    <form method = "POST" action ="/">
+      <label for= "city_name" >Enter a city: </label>
+      <input type="text" name = "city_name" id = "city_name" >
+      <button type="submit"> Get recs</button>
+    </form>
+
+    {% if weather %}
+        <h3>Weather: {{weather}}</h3>
+    {% endif %}
+
+    {% if movies %}
+        <h3>Recommended movies:</h3>
+        <ul>
+            {% for movie in movies %}
+                <li>{{movie.Title}}</li>
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        <p>{{error}}</p>
+    {% else %}
+        <p> errorsss</p>
+    {% endif %}
+
 </body>
 </html>
+
+

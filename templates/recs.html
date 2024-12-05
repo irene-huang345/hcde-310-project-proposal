@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>personalized movie recommendations</title>
 </head>
 <body>
-$END$
+
+{% if weather %}
+    <h2>Weather: {{weather}}</h2>
+{% endif %}
+
+{% if movies %}
+  <ul>
+      {% for movie in movies %}
+        <li>
+            {movie.Title}<br>
+            {movie.Genre}<br>
+            {movie.Plot}
+        </li>
+      {% endfor %}
+
+  </ul>
+{% else %}
+    <p> nothing found</p>
+{% end if %}
+
 </body>
 </html>
+
