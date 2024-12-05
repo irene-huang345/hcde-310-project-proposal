@@ -12,23 +12,19 @@
       <input type="text" name = "city_name" id = "city_name" >
       <button type="submit"> Get recs</button>
     </form>
-
-    {% if weather %}
-        <h3>Weather: {{weather}}</h3>
-    {% endif %}
-
-    {% if movies %}
-        <h3>Recommended movies:</h3>
+    <h3>Recommended movies:</h3>
         <ul>
             {% for movie in movies %}
                 <li>{{movie.Title}}</li>
             {% endfor %}
         </ul>
-    {% elif error %}
-        <p>{{error}}</p>
+    {% if weather %}
+        <p> weather will go here eventually</p>
+        <h3>Weather: {{weather}}</h3>
     {% else %}
         <p> errorsss</p>
     {% endif %}
+
 
 </body>
 </html>

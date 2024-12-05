@@ -50,8 +50,12 @@ def gather_movies(weather_type):
         omdb_results.raise_for_status()
         data = omdb_results.json()
 
+        print()
+
         if data.get('Response') == "True":
-            return data.get('Search', [])
+            movies_to_display = data.get('Search', [])
+            # print(movies_to_display)
+            return movies_to_display
         else:
             return []
     except requests.exceptions.RequestException as e:

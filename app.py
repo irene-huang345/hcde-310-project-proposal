@@ -14,9 +14,15 @@ city_coords = {
 
 @app.route('/', methods=['GET', 'POST'])
 def results():
-    default = gather_movies("Sunny")
+    default_movies = gather_movies("Sunny")
+    print(default_movies)
+
+    if request.method == 'GET':
+        print("GET REQUEST")
+        return render_template('index.html', movies = default_movies)
 
     if request.method == 'POST':
+        print("POST REQUEST")
         try:
             city_name = request.form.get('city_name')
             city_name = city_name.strip().title()
@@ -29,7 +35,7 @@ def results():
 
                     movies = gather_movies(weather_type)
 
-                    print(f"weather type: {weather_type}")
+                    print(f"\n\nweather type: {weather_type}")
                     print(f"movies: {movies}")
 
                     return render_template('index.html', weather = weather_type, movies = movies)
@@ -45,7 +51,7 @@ def results():
             return "error exception: ", 404
 
     else:
-        return render_template('index.html', movies =[])
+        return render_template('index.html', movies = default_movies)
 
 
 if __name__ == '__main__':
