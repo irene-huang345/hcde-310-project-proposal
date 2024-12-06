@@ -6,24 +6,28 @@
 </head>
 <body>
 
-{% if weather %}
-    <h2>Weather: {{weather}}</h2>
+{% if movies %}
+    <ul>
+        {% for movie in movies %}
+            <li>
+                {{movie.Title}}
+                {% if movie.Poster %}
+                    <br><img src = "{{movie.Poster}}">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+                <br>
+                <em>{{movie.Genre}}</em>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p> no movies</p>
 {% endif %}
 
-{% if movies %}
-  <ul>
-      {% for movie in movies %}
-        <li>
-            {movie.Title}<br>
-            {movie.Genre}<br>
-            {movie.Plot}
-        </li>
-      {% endfor %}
-
-  </ul>
-{% else %}
-    <p> nothing found</p>
-{% end if %}
+{% if error %}
+    <p> error: {{error}}</p>
+{% endif %}
 
 </body>
 </html>

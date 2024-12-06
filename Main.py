@@ -34,7 +34,7 @@ def gather_weather(latitude, longitude):
 
         if 'properties' in cast_info and 'periods' in cast_info['properties']:
             weather_type = cast_info['properties']['periods'][0]['shortForecast']
-            print(weather_type)
+            print("weather typeeee", weather_type)
             return weather_type
         else:
             print("error, no periods found")
@@ -58,13 +58,19 @@ def gather_movies(weather_type):
     recs = {
         "Sunny": "Comedy",
         "Rain" : "Drama",
+        "Showers": "Melodrama",
         "Cloudy" : "Action",
         "Snow" : "Romance",
         "Clear" : "Kids & Family",
-        "Partly-Cloudy": "Crime",
+        "Partly Cloudy": "Crime",
+        "Partly Sunny": "Adventure",
+        "Mostly Clear": "Anime",
+        "Mostly Cloudy": "Horror"
     }
 
-    genre = recs.get(weather_type.split()[0], "Comedy")
+
+    genre = recs.get(weather_type, "Comedy")
+    print("genre", genre)
 
     try:
         omdb_url = f"https://www.omdbapi.com/?apikey={omdb_api_key}&s={genre}&type=movie"
@@ -76,7 +82,7 @@ def gather_movies(weather_type):
 
         if data.get('Response') == "True":
             movies_to_display = data.get('Search', [])
-            # print(movies_to_display)
+            print("movies", movies_to_display)
             return movies_to_display
         else:
             return []
@@ -89,7 +95,7 @@ def gather_movies(weather_type):
 
 
 def main():
-    latitude, longitude = 40.7128, -74.0060
+    latitude, longitude = 34.06778, -118.24167
     weather_type = gather_weather(latitude, longitude)
 
     if weather_type:

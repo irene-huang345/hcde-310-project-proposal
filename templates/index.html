@@ -22,27 +22,32 @@
     <form method = "POST" action ="/">
       <label for= "city_name" >Select a city: </label>
         <select name = "city_name" id = "city_name">
-            <option value = "New York">New York</option>
+            <option value="New York" >New York</option>
             <option value = "Los Angeles">Los Angeles</option>
             <option value = "Miami">Miami </option>
             <option value = "Seattle">Seattle </option>
         </select>
       <button type="submit"> Get Recommendations</button>
     </form>
-    <h3>Recommended movies:</h3>
-        <ul>
-            {% for movie in movies %}
-                <li>{{movie.Title}}</li>
-            {% endfor %}
-        </ul>
 
     {% if weather %}
         <h3>Weather: {{weather}}</h3>
+    {% else %}
+        <h3> Default weather: Sunny.</h3>
     {% endif %}
 
-    {% if error %}
-        <p> Error present: {{error}}</p>
-    {% endif %}
+    <h3>Recommended movies:</h3>
+        <ul>
+            {% for movie in movies %}
+                <li>{{movie.Title}} </li>
+            {% endfor %}
+        </ul>
+
+     {% include 'recs.html' %}
+
+{% if error %}
+    <p> error: {{error}}</p>
+{% endif %}
 
 
 </body>
