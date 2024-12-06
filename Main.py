@@ -1,24 +1,10 @@
 from flask import Flask
 import requests
-from geopy.geocoders import Nominatim
+import os
+from dotenv import load_dotenv
 
-#any import statements here
-#import json
-
-
-#
-# def get_coordinates(city_name):
-#     geolocator = Nominatim(user_agent="weather_app")
-#     location = geolocator.geocode(city_name)
-#
-#     if location:
-#         latitude = location.latitude
-#         longitude = location.longitude
-#         return latitude, longitude
-#     else:
-#         print(f"Could not find coordinates for {city_name}")
-#         return None, None
-#
+load_dotenv()
+omdb_api_key = os.getenv("OMDB_API_KEY")
 
 
 #ChatGPT helped me with setting up my try and except errors to check for
@@ -81,7 +67,8 @@ def gather_movies(weather_type):
     genre = recs.get(weather_type.split()[0], "Comedy")
 
     try:
-        omdb_url = f"https://www.omdbapi.com/?apikey=95839b7d&s={genre}&type=movie"
+        omdb_url = f"https://www.omdbapi.com/?apikey={omdb_api_key}&s={genre}&type=movie"
+        print(f"OMDB URL: {omdb_url}")
         omdb_results = requests.get(omdb_url)
         omdb_results.raise_for_status()
         data = omdb_results.json()
@@ -102,8 +89,6 @@ def gather_movies(weather_type):
 
 
 def main():
-    #city_name = "Miami"
-    #latitude, longitude= gather_weather(city_name)
     latitude, longitude = 40.7128, -74.0060
     weather_type = gather_weather(latitude, longitude)
 
