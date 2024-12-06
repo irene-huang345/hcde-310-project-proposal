@@ -7,10 +7,27 @@
 <body>
     <h1>Getting Cozy!</h1>
 
+<!--    Todo-->
+<!--    - drop down menu of cities instead of search bar-->
+
+<!--        - figure out how to get the list of movies recommended for a city-->
+<!--    - get the weather for city name-->
+<!--    - new york ot movies but coords to movies -->
+<!--    - ensure that the weather is stated both on the default and city page-->
+<!--    - tackle "errorsss"-->
+<!--    - make css better if time -->
+<!--    -->
+<!--    -->
+
     <form method = "POST" action ="/">
-      <label for= "city_name" >Enter a city: </label>
-      <input type="text" name = "city_name" id = "city_name" >
-      <button type="submit"> Get recs</button>
+      <label for= "city_name" >Select a city: </label>
+        <select name = "city_name" id = "city_name">
+            <option value = "New York">New York</option>
+            <option value = "Los Angeles">Los Angeles</option>
+            <option value = "Miami">Miami </option>
+            <option value = "Seattle">Seattle </option>
+        </select>
+      <button type="submit"> Get Recommendations</button>
     </form>
     <h3>Recommended movies:</h3>
         <ul>
@@ -18,11 +35,13 @@
                 <li>{{movie.Title}}</li>
             {% endfor %}
         </ul>
+
     {% if weather %}
-        <p> weather will go here eventually</p>
         <h3>Weather: {{weather}}</h3>
-    {% else %}
-        <p> errorsss</p>
+    {% endif %}
+
+    {% if error %}
+        <p> Error present: {{error}}</p>
     {% endif %}
 
 
