@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Getting Cozy!</title>
-</head>
+
+
+
+
 <body>
-    <h1>Getting Cozy!</h1>
 
-<!--    Todo-->
-<!--    - drop down menu of cities instead of search bar-->
+{% extends 'base.html' %}
 
-<!--        - figure out how to get the list of movies recommended for a city-->
-<!--    - get the weather for city name-->
-<!--    - new york ot movies but coords to movies -->
-<!--    - ensure that the weather is stated both on the default and city page-->
-<!--    - tackle "errorsss"-->
-<!--    - make css better if time -->
-<!--    -->
-<!--    -->
-
+{% block content %}
     <form method = "POST" action ="/">
       <label for= "city_name" >Select a city: </label>
         <select name = "city_name" id = "city_name">
             <option value="New York" >New York</option>
-            <option value = "Los Angeles">Los Angeles</option>
+            <option value = "Los Angeles" >Los Angeles</option>
             <option value = "Miami">Miami </option>
             <option value = "Seattle">Seattle </option>
         </select>
@@ -33,21 +23,31 @@
     {% if weather %}
         <h3>Weather: {{weather}}</h3>
     {% else %}
-        <h3> Default weather: Sunny.</h3>
+        <h3> Default weather: Sunny</h3>
     {% endif %}
 
     <h3>Recommended movies:</h3>
-        <ul>
-            {% for movie in movies %}
-                <li>{{movie.Title}} </li>
-            {% endfor %}
-        </ul>
 
-     {% include 'recs.html' %}
+        <div class = "movie-grid">
+            {% for movie in movies %}
+                <div class = "movie-item">
+                    {% if movie.Poster %}
+                        <img src="{{movie.Poster}}" alt= "Poster for {{movie.Title}}">
+                    {% else %}
+                        <p>Image not available. </p>
+                    {% endif %}
+                    <p>{{movie.Title}} </p>
+                </div>
+            {% endfor %}
+        </div>
+
+
 
 {% if error %}
     <p> error: {{error}}</p>
 {% endif %}
+
+{% endblock %}
 
 
 </body>

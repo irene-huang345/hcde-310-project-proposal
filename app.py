@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import requests
-#from geopy.geocoders import Nominatim
 from Main import gather_weather, gather_movies
 
 app = Flask(__name__)
@@ -18,7 +17,7 @@ city_coords = {
 def results():
     default_city = "New York"
     default_movies = gather_movies("Sunny")
-    print(default_movies)
+    #print(default_movies)
 
     if request.method == 'GET':
         #print("GET REQUEST")
@@ -33,7 +32,7 @@ def results():
             if city_name in city_coords:
                 latitude, longitude = city_coords[city_name]
                 weather_type = gather_weather(latitude, longitude)
-                print(weather_type)
+                #print(weather_type)
                 #print("CHECK ALL FOUR: ", city_name, latitude, longitude, weather_type)
                 if weather_type:
 

@@ -1,4 +1,3 @@
-from flask import Flask
 import requests
 import os
 from dotenv import load_dotenv
@@ -13,28 +12,27 @@ def gather_weather(latitude, longitude):
 
     try:
         weather_call = f"https://api.weather.gov/points/{latitude},{longitude}"
-        print(f"weather data for: {latitude}, {longitude}")
+        #print(f"weather data for: {latitude}, {longitude}")
 
         results = requests.get(weather_call)
         results.raise_for_status()
 
 
         data = results.json()
-        print("data",data)
+        #print("data",data)
 
         forecast = data['properties']['forecast']
-        print("forecast", forecast)
+        #print("forecast", forecast)
 
         final = requests.get(forecast)
         final.raise_for_status()
 
         cast_info = final.json()
-        print("cast_info",cast_info)
+        #print("cast_info",cast_info)
 
 
         if 'properties' in cast_info and 'periods' in cast_info['properties']:
             weather_type = cast_info['properties']['periods'][0]['shortForecast']
-            print("weather typeeee", weather_type)
             return weather_type
         else:
             print("error, no periods found")
@@ -70,11 +68,10 @@ def gather_movies(weather_type):
 
 
     genre = recs.get(weather_type, "Comedy")
-    print("genre", genre)
+    #print("genre", genre)
 
     try:
         omdb_url = f"https://www.omdbapi.com/?apikey={omdb_api_key}&s={genre}&type=movie"
-        print(f"OMDB URL: {omdb_url}")
         omdb_results = requests.get(omdb_url)
         omdb_results.raise_for_status()
         data = omdb_results.json()
@@ -82,7 +79,6 @@ def gather_movies(weather_type):
 
         if data.get('Response') == "True":
             movies_to_display = data.get('Search', [])
-            print("movies", movies_to_display)
             return movies_to_display
         else:
             return []

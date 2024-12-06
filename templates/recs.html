@@ -7,20 +7,21 @@
 <body>
 
 {% if movies %}
-    <ul>
+    <div class = "movie-grid">
         {% for movie in movies %}
-            <li>
+            <div class = "movie-item">
                 {{movie.Title}}
+
                 {% if movie.Poster %}
-                    <br><img src = "{{movie.Poster}}">
+                    <br><img src = "{{movie.Poster}}" alt= "Poster for {{movie.Title}}">
                 {% else %}
                     <p>No image available</p>
                 {% endif %}
-                <br>
+
                 <em>{{movie.Genre}}</em>
-            </li>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p> no movies</p>
 {% endif %}

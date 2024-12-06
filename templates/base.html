@@ -6,11 +6,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
 </head>
+<style>
+    body {
+        background-color: #A9A9A9;
+        font-family: Helvetica, sans-serif;
+    }
+</style>
 <body>
-    <h1>Input city name</h1>
+    <header>
+        <h1> {% block header %} Getting Cozy! {% endblock %}</h1>
+    </header>
+
     {% block content %} {% endblock %}
         <footer>
-
         </footer>
 
 </body>
