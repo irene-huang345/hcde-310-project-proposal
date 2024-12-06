@@ -1,23 +1,26 @@
+<!--ChatGPT was used here in helping me inputting my div class as they align with my styles.css sheet.-->
 <!DOCTYPE html>
 <html lang="en">
-
-
-
 
 <body>
 
 {% extends 'base.html' %}
 
 {% block content %}
+
+<h3>Get movie recommendations based on the weather in your city!</h3>
     <form method = "POST" action ="/">
-      <label for= "city_name" >Select a city: </label>
+      <label for= "city_name" >Select your city: </label>
         <select name = "city_name" id = "city_name">
+            <option value ="" disabled selected> Select a city</option>
             <option value="New York" >New York</option>
             <option value = "Los Angeles" >Los Angeles</option>
             <option value = "Miami">Miami </option>
-            <option value = "Seattle">Seattle </option>
+            <option value = "Seattle" >Seattle </option>
+            <option value = "Chicago">Chicago </option>
+            <option value = "Philadelphia">Philadelphia </option>
         </select>
-      <button type="submit"> Get Recommendations</button>
+      <button type="submit" > Get Recommendations</button>
     </form>
 
     {% if weather %}
@@ -27,7 +30,6 @@
     {% endif %}
 
     <h3>Recommended movies:</h3>
-
         <div class = "movie-grid">
             {% for movie in movies %}
                 <div class = "movie-item">
@@ -40,8 +42,6 @@
                 </div>
             {% endfor %}
         </div>
-
-
 
 {% if error %}
     <p> error: {{error}}</p>

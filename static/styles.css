@@ -1,14 +1,16 @@
-
+/*ChatGPT helped me set up the movie elements I have in here as I wanted to display my movies in a grid.
+It helped me create the element from it and told me that I either need to refrence this sheet or the element
+in my html.*/
 
 Header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.movie-poster{
-    height: auto;
-    width: 100%;
-    border-radius: 8px;
+.submit-button{
+    padding: 10px;
+    font-size: 1.1em;
+    color: white;
 }
 
 .movie-item{

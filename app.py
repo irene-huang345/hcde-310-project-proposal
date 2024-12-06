@@ -13,6 +13,7 @@ city_coords = {
     "Philadelphia": (39.9511, -75.1656)
 }
 
+#Naomi helped me set up the "if request.method == "GET" since my code was produce errors and not entering "post".
 @app.route('/', methods=['GET', 'POST'])
 def results():
     default_city = "New York"
